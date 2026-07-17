@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLISS | Luxury Perfume</title>
+    <meta name="description"
+        content="FLISS Luxury Perfume - Crafted to linger. Experience our high-end luxury aesthetic.">
+    <link rel="stylesheet" href="styles.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Cinzel:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+    <!-- Loading / Intro Screen -->
+    <div id="loader" class="loader glossy-black">
+        <div class="loader-content">
+            <img src="./logo-light-highres.png" alt="FLISS Logo" class="loader-logo" id="loaderLogo">
+            <p class="loader-text" id="loaderText">Preparing your scent...</p>
+        </div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-marquee">
+            <span>BUY 1 GET 1 FREE • FREE SHIPPING PAN-INDIA • 20% CONCENTRATION PREMIUM OILS • LUXURY REIMAGINED •
+                COMPLIMENTARY SAMPLES WITH EVERY ORDER • </span>
+            <span>BUY 1 GET 1 FREE • FREE SHIPPING PAN-INDIA • 20% CONCENTRATION PREMIUM OILS • LUXURY REIMAGINED •
+                COMPLIMENTARY SAMPLES WITH EVERY ORDER • </span>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <nav class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#hero-slider">Discover</a></li>
+                <li><a href="#collection">Collection</a></li>
+            </ul>
+            <div class="logo-container">
+                <img src="./logo-light.png?v=2.2" alt="FLISS Logo" class="nav-logo">
+            </div>
+            <ul class="nav-links nav-right">
+                <li><a href="#hero-slider">Our Story</a></li>
+                <li class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </li>
+            </ul>
+            <!-- Mobile Hamburger Menu Toggle -->
+            <button class="hamburger-btn" id="menuToggle" aria-label="Toggle menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#hero-slider">Discover</a></li>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#hero-slider">Our Story</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <main id="main-content" class="hidden">
+
+        <!-- SECTION 1: New Hero Slider -->
+        <section class="hero-slider-section" id="hero-slider">
+            <div class="showcase-container">
+                <!-- Slide 1: White Light -->
+                <div class="showcase-slide active" data-perfume="white-light">
+                    <div class="showcase-content container">
+                        <div class="showcase-text-col">
+                            <h2 class="showcase-heading hero-slider-heading">WHITE LIGHT</h2>
+                            <p class="showcase-tagline hero-slider-tagline">PURE LIGHT, CAPTURED.</p>
+                            <button class="btn-minimal showcase-cta-btn hero-slider-cta-btn">EXPLORE WHITE
+                                LIGHT</button>
+                        </div>
+                        <div class="showcase-image-col">
+                            <img src="./floral.png" alt="White Light Fragrance"
+                                class="showcase-image hero-slider-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Citrus Elixir -->
+                <div class="showcase-slide" data-perfume="citrus-elixir">
+                    <div class="showcase-content container">
+                        <div class="showcase-text-col">
+                            <h2 class="showcase-heading hero-slider-heading">CITRUS ELIXIR</h2>
+                            <p class="showcase-tagline hero-slider-tagline">FRESH CITRUS, REFINED.</p>
+                            <button class="btn-minimal showcase-cta-btn hero-slider-cta-btn">EXPLORE CITRUS
+                                ELIXIR</button>
+                        </div>
+                        <div class="showcase-image-col">
+                            <img src="./citrus.png" alt="Citrus Elixir Fragrance"
+                                class="showcase-image hero-slider-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Woody Oud -->
+                <div class="showcase-slide" data-perfume="woody-oud">
+                    <div class="showcase-content container">
+                        <div class="showcase-text-col">
+                            <h2 class="showcase-heading hero-slider-heading">WOODY OUD</h2>
+                            <p class="showcase-tagline hero-slider-tagline">MYSTERIOUS OUD, CRAFTED.</p>
+                            <button class="btn-minimal showcase-cta-btn hero-slider-cta-btn">EXPLORE WOODY OUD</button>
+                        </div>
+                        <div class="showcase-image-col">
+                            <img src="./woody.png" alt="Woody Oud Fragrance" class="showcase-image hero-slider-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nav Controls -->
+                <button class="showcase-nav-btn showcase-prev-btn" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="showcase-nav-btn showcase-next-btn" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <!-- Dots Pagination -->
+                <div class="showcase-dots hero-slider-dots">
+                    <span class="showcase-dot active"></span>
+                    <span class="showcase-dot"></span>
+                    <span class="showcase-dot"></span>
+                </div>
+            </div>
+
+            <!-- Marquee/Moving Text Strip -->
+            <div class="marquee-wrapper glass-marquee">
+                <div class="marquee-content">
+                    <span>LONG LASTING • PREMIUM OILS • UNISEX • OUD • EXCLUSIVE BLENDS • LUXURY FRAGRANCES • CRAFTED IN
+                        INDIA • </span>
+                    <span>LONG LASTING • PREMIUM OILS • UNISEX • OUD • EXCLUSIVE BLENDS • LUXURY FRAGRANCES • CRAFTED IN
+                        INDIA • </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Hero Section -->
+        <section class="hero-section glossy-black" id="hero">
+            <div class="container split-layout">
+                <div class="left-col text-col">
+                    <h2 class="italic-statement">
+                        CREATE YOUR MOOD<br>
+                        THROUGH THE<br>
+                        MAGIC OF<br>
+                        FRAGRANCE
+                    </h2>
+                    <a href="#collection" class="btn-minimal"
+                        style="text-decoration: none; display: inline-block;">EXPLORE OUR COLLECTION</a>
+                </div>
+                <div class="right-col logo-col float-anim">
+                    <img src="./logo-light-highres.png" alt="FLISS Logo Large" class="large-brand-logo">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2.5: Our Collection -->
+        <section class="collection-section" id="collection">
+            <div class="container vertical-layout">
+                <div class="section-header reveal-text">
+                    <h2 class="luxury-heading">OUR COLLECTION</h2>
+                    <p class="luxury-subtitle">Discover our signature line of masterfully crafted fragrances.</p>
+                </div>
+
+                <div class="collection-grid">
+                    <!-- Card 1: Citrus Elixir -->
+                    <div class="collection-card" data-perfume="citrus-elixir">
+                        <div class="card-image-wrapper">
+                            <img src="./citrus.png" alt="Citrus Elixir" class="card-image">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="perfume-name">CITRUS ELIXIR</h3>
+                            <p class="perfume-tagline">Fresh • Vibrant • Uplifting</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: White Light -->
+                    <div class="collection-card" data-perfume="white-light">
+                        <div class="card-image-wrapper">
+                            <img src="./floral.png" alt="White Light" class="card-image">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="perfume-name">WHITE LIGHT</h3>
+                            <p class="perfume-tagline">Elegant • Delicate • Radiant</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Woody Oud -->
+                    <div class="collection-card" data-perfume="woody-oud">
+                        <div class="card-image-wrapper">
+                            <img src="./woody.png" alt="Woody Oud" class="card-image">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="perfume-name">WOODY OUD</h3>
+                            <p class="perfume-tagline">Earthy • Warm • Mysterious</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Oil Concentration — Editorial Showcase -->
+        <section class="oil-conc-section" id="oil-concentration">
+            <div class="oil-conc-inner">
+                <!-- Left: Premium video showcase frame -->
+                <div class="oil-conc-video-col oil-conc-reveal">
+                    <div class="oil-conc-frame">
+                        <div class="oil-conc-video-wrap">
+                            <video
+                                src="./final.mp4"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label="FLISS oil concentration animation"
+                            ></video>
+                            <!-- Vignette overlay — softens edges -->
+                            <div class="oil-conc-vignette"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right: Editorial typography -->
+                <div class="oil-conc-text-col oil-conc-reveal">
+                    <h2 class="oil-conc-heading">50% OIL<br>CONCENTRATION</h2>
+                    <div class="oil-conc-divider"></div>
+                    <p class="oil-conc-desc">Experience long-lasting fragrance specially formulated for Indian tropical weather.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Why Choose Us -->
+        <section class="why-choose-us white-section" id="why-choose">
+            <div class="container vertical-layout">
+                <div class="section-header reveal-text">
+                    <h2 class="luxury-heading">WHY CHOOSE FLISS?</h2>
+                    <p class="luxury-subtitle">Crafted with intention. Designed for everyday luxury.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="4" />
+                            </svg></div>
+                        <h4>Crafted With Precision</h4>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg></div>
+                        <h4>Inspired By Iconic Scents</h4>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg></div>
+                        <h4>Refined Quality Standards</h4>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg></div>
+                        <h4>Luxury, Reimagined</h4>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg></div>
+                        <h4>Designed For Real Life</h4>
+                        <div class="divider"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Testimonials -->
+        <section class="testimonials-section glossy-black" id="testimonials">
+            <div class="container vertical-layout">
+                <div class="section-header reveal-text">
+                    <h2 class="luxury-heading">WHAT OUR CUSTOMERS SAY</h2>
+                    <p class="luxury-subtitle">Real experiences from our fragrance connoisseurs.</p>
+                </div>
+
+                <div class="testimonials-carousel-wrapper">
+                    <!-- Carousel Slider container -->
+                    <div class="testimonials-track" id="testimonials-track">
+                        <!-- Loaded dynamically -->
+                        <div class="loading-reviews">Loading reviews...</div>
+                    </div>
+
+                    <!-- Navigation arrows -->
+                    <button class="carousel-nav-btn prev-btn" id="reviews-prev-btn" aria-label="Previous reviews">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-nav-btn next-btn" id="reviews-next-btn" aria-label="Next reviews">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Dots navigation -->
+                <div class="testimonials-dots" id="testimonials-dots">
+                    <!-- Dots dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- SECTION 7: Contact Us + Footer -->
+        <section class="contact-footer glossy-black" id="contact">
+            <div class="container split-layout align-start">
+                <div class="left-col text-col reveal-text">
+                    <h2 class="luxury-heading large-heading">LET’S CONNECT</h2>
+                    <div class="contact-details">
+                        <p><a href="mailto:flissperfumes@gmail.com">flissperfumes@gmail.com</a></p>
+                        <p><a href="https://www.instagram.com/fliss_perfumes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                target="_blank">@flissperfumes</a></p>
+                        <p>+91 94449 26620</p>
+                        <p>Chennai, India</p>
+                    </div>
+                </div>
+                <div class="right-col form-col">
+                    <form class="glass-form" id="review-form">
+                        <h3 class="form-title" style="font-family: var(--font-heading); font-size: 1.2rem; letter-spacing: 0.1em; color: var(--white); margin-bottom: 1.5rem; text-transform: uppercase;">Share Your Experience</h3>
+                        <div class="input-group">
+                            <input type="text" id="review-name" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="review-email" placeholder="Email Address" required>
+                        </div>
+                        <div class="rating-group">
+                            <label class="rating-label">YOUR RATING</label>
+                            <div class="star-rating" id="star-rating">
+                                <span class="star" data-value="1">&#9734;</span>
+                                <span class="star" data-value="2">&#9734;</span>
+                                <span class="star" data-value="3">&#9734;</span>
+                                <span class="star" data-value="4">&#9734;</span>
+                                <span class="star" data-value="5">&#9734;</span>
+                            </div>
+                            <input type="hidden" id="review-rating" value="" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="review-message" placeholder="Review Message" rows="4" maxlength="300" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-review-submit" id="btn-submit-review">
+                            <span class="spinner" id="submit-spinner"></span>
+                            <span class="btn-text" id="submit-text">SUBMIT REVIEW</span>
+                        </button>
+                        <p class="review-error-message hidden" id="review-error"></p>
+                    </form>
+                    <div class="success-message hidden" id="review-success">
+                        <p class="success-title">Thank you for sharing your experience with FLISS.</p>
+                        <p class="success-desc">Your review has been published successfully.</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="merged-footer">
+                <div class="footer-content">
+                    <img src="./logo-light.png" alt="FLISS" class="footer-logo">
+                    <ul class="footer-links">
+                        <li><a href="#hero-slider">Discover</a></li>
+                        <li><a href="#oil-concentration">Quality</a></li>
+                        <li><a href="#hero-slider">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <ul class="footer-policy-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/fliss_perfumes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 FLISS PERFUMES. All rights reserved.</p>
+                </div>
+            </footer>
+        </section>
+
+    </main>
+
+    <!-- SECTION 8: Floating WhatsApp Button -->
+    <a href="https://wa.me/919444926620" target="_blank" class="whatsapp-float" id="whatsappFloat">
+        <div class="wa-text-ring">
+            <svg viewBox="0 0 100 100">
+                <path id="curve" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
+                <text width="500">
+                    <textPath href="#curve" startOffset="0%">
+                        ENQUIRY NOW • ENQUIRY NOW •
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+        <div class="wa-icon">
+            <svg viewBox="0 0 24 24" fill="#25D366">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+            </svg>
+        </div>
+    </a>
+    <!-- Collection Detail Modal -->
+    <div id="collection-modal" class="modal-overlay">
+        <div class="modal-wrapper">
+            <button class="modal-close-btn" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-content">
+                <div class="modal-image-col">
+                    <img src="" alt="Perfume Bottle" class="modal-image" id="modalPerfumeImg">
+                </div>
+                <div class="modal-info-col">
+                    <h2 class="modal-perfume-name" id="modalPerfumeName">PERFUME NAME</h2>
+                    <p class="modal-perfume-tagline" id="modalPerfumeTagline">TAGLINE</p>
+                    <p class="modal-perfume-description" id="modalPerfumeDesc">Description goes here.</p>
+
+                    <div class="modal-notes-section">
+                        <h4 class="notes-heading">FRAGRANCE PYRAMID</h4>
+                        <div class="notes-grid">
+                            <div class="note-item">
+                                <span class="note-label">TOP NOTES</span>
+                                <span class="note-value" id="modalTopNotes">Top Notes</span>
+                            </div>
+                            <div class="note-item">
+                                <span class="note-label">HEART NOTES</span>
+                                <span class="note-value" id="modalHeartNotes">Heart Notes</span>
+                            </div>
+                            <div class="note-item">
+                                <span class="note-label">BASE NOTES</span>
+                                <span class="note-value" id="modalBaseNotes">Base Notes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-ingredients-section">
+                        <h4 class="notes-heading">INGREDIENTS</h4>
+                        <p class="modal-ingredients-value" id="modalIngredients">Ingredients list</p>
+                    </div>
+
+                    <a href="#" target="_blank" class="btn-primary modal-buy-btn" id="modalBuyBtn"
+                        style="display: inline-block; text-align: center; text-decoration: none;">ENQUIRE VIA
+                        WHATSAPP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=4.0"></script>
+</body>
+
+</html>
